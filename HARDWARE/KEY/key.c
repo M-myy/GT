@@ -87,24 +87,3 @@ unsigned char key_scan(void)    //°´¼üÉ¨Ãèº¯Êý
 	
 	return 0;
 }
-
-float key_vlaue(char *p)
-{
-	char i = 0,*addr;
-	double value;
-	
-	addr = p;
-	while(1)
-	{
-		key = key_scan();
-		if(key==KEY1_PRESS||key==KEY2_PRESS||key==KEY3_PRESS||key==KEY4_PRESS||key==KEY5_PRESS||key==KEY6_PRESS||
-			key==KEY7_PRESS||key==KEY8_PRESS||key==KEY9_PRESS||key==KEY10_PRESS||key==KEY11_PRESS||key==KEY12_PRESS)
-		 {p[i++] = key;LCD_ShowString(80,40,120,24,24,(u8 *)p);}
-		if(key==KEY11_PRESS)
-		{p[i] = '\0';break;}
-	}
-	p = addr;
-	value = atof(p);
-	
-	return ((float)value);
-}
