@@ -11,14 +11,15 @@
 #include "jiemian.h"
 #include "iic.h"
 #include "my_uart.h"
+#include "my_printf.h"
 
 /*****************************************************************
-*  key:ç”¨äºŽè¯»å–æŒ‰é”®çš„å€¼                                           *
-*  KP:å¤–éƒ¨å®šä¹‰å˜é‡ï¼Œç”¨äºŽè®¾ç½®ç³»æ•°KP                                 *
-*  ANGLE:å¤–éƒ¨å®šä¹‰å˜é‡ï¼Œç”¨äºŽè®¾ç½®è½¬åŠ¨è§’åº¦                            *
-*  PWM:å¤–éƒ¨å®šä¹‰å˜é‡ï¼Œç”¨äºŽè®¾ç½®pwm                                   *
-*  SPEED:å¤–éƒ¨å®šä¹‰å˜é‡ï¼Œç”¨äºŽè®¾ç½®è½¬é€Ÿ                                *
-*  USART_RX_BUF[USART_REC_LEN]:å¤–éƒ¨å®šä¹‰æ•°ç»„ï¼Œç”¨äºŽæŽ¥æ”¶ä¸²å£æ•°æ®      *
+*  key:ÓÃÓÚ¶ÁÈ¡°´¼üµÄÖµ                                           *
+*  KP:Íâ²¿¶¨Òå±äÁ¿£¬ÓÃÓÚÉèÖÃÏµÊýKP                                 *
+*  ANGLE:Íâ²¿¶¨Òå±äÁ¿£¬ÓÃÓÚÉèÖÃ×ª¶¯½Ç¶È                            *
+*  PWM:Íâ²¿¶¨Òå±äÁ¿£¬ÓÃÓÚÉèÖÃpwm                                   *
+*  SPEED:Íâ²¿¶¨Òå±äÁ¿£¬ÓÃÓÚÉèÖÃ×ªËÙ                                *
+*  USART_RX_BUF[USART_REC_LEN]:Íâ²¿¶¨ÒåÊý×é£¬ÓÃÓÚ½ÓÊÕ´®¿ÚÊý¾Ý      *
 ******************************************************************/
 
 u8 key = 0;
@@ -30,19 +31,20 @@ extern u8 USART_RX_BUF[USART_REC_LEN];
 
 int main()
 {
-  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);	//ä¸­æ–­åˆ†ç»„è®¾ç½®
-	uart_init(115200);                              //è®¾ç½®ä¸²å£æ³¢ç‰¹çŽ‡
-	key_init();                                     //æŒ‰é”®æ‰«æåˆå§‹åŒ–
-	delay_init();                                   //å»¶æ—¶å‡½æ•°åˆå§‹åŒ–
-	TIM5_Cap_Init(0xffff,0);                        //å®šæ—¶å™¨5è®¾ç½®ä¸ºæ­£äº¤ç¼–ç æ¨¡å¼åˆå§‹åŒ–
-	TIM2_init(4999,1399);                           //å®šæ—¶å™¨2åˆå§‹åŒ–ï¼Œç”¨äºŽè¯»å–å®šæ—¶å™¨5çš„è„‰å†²è®¡æ•°å€¼ï¼Œå®šæ—¶ä¸º0.1ç§’
-	TIM3_pwm_init(899,999);                         //å®šæ—¶å™¨ä¸‰ï¼Œç”¨äºŽäº§ç”Ÿpwm
-	pid_init();                                     //pidå‚æ•°åˆå§‹åŒ–
-	TIM_SetCompare2(TIM3,899);                      //å¼€å§‹æ—¶ä¸è®©ç”µæœºè½¬åŠ¨
-	LCD_Init();                                     //åˆå§‹åŒ–LCD
-        AT24CXX_Init();			                //IICåˆå§‹åŒ–
-	TIM4_init(1249,349);                            //å®šæ—¶å™¨4åˆå§‹åŒ–ï¼Œç”¨äºŽæ˜¾ç¤ºæ³¢å½¢æ‰“ç‚¹
+  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);	//ÖÐ¶Ï·Ö×éÉèÖÃ
+	uart_init(115200);                              //ÉèÖÃ´®¿Ú²¨ÌØÂÊ
+	key_init();                                     //°´¼üÉ¨Ãè³õÊ¼»¯
+	delay_init();                                   //ÑÓÊ±º¯Êý³õÊ¼»¯
+	TIM5_Cap_Init(0xffff,0);                        //¶¨Ê±Æ÷5ÉèÖÃÎªÕý½»±àÂëÄ£Ê½³õÊ¼»¯
+	TIM2_init(4999,1399);                           //¶¨Ê±Æ÷2³õÊ¼»¯£¬ÓÃÓÚ¶ÁÈ¡¶¨Ê±Æ÷5µÄÂö³å¼ÆÊýÖµ£¬¶¨Ê±Îª0.1Ãë
+	TIM3_pwm_init(899,999);                         //¶¨Ê±Æ÷Èý£¬ÓÃÓÚ²úÉúpwm
+	pid_init();                                     //pid²ÎÊý³õÊ¼»¯
+	TIM_SetCompare2(TIM3,899);                      //¿ªÊ¼Ê±²»ÈÃµç»ú×ª¶¯
+	LCD_Init();                                     //³õÊ¼»¯LCD
+        AT24CXX_Init();			                //EEPROM³õÊ¼»¯
+	TIM4_init(1249,349);                            //¶¨Ê±Æ÷4³õÊ¼»¯£¬ÓÃÓÚÏÔÊ¾²¨ÐÎ´òµã
 
-	LCD_Clear(WHITE);	                        //æ¸…å±
-	zhujiemian();	                                //è¿›å…¥ä¸»ç•Œé¢
+	LCD_Clear(WHITE);	                        //ÇåÆÁ
+	zhujiemian();	                                //½øÈëÖ÷½çÃæ
 }
+

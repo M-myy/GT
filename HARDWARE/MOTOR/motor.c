@@ -8,8 +8,9 @@
 #include "delay.h"
 #include "jiemian.h"
 #include "eeprom.h"
+#include "my_printf.h"
 
-u8 P[20] = "0",I[20] = "0",D[20] = "0",V[20] = "0";   //LCD显示使用
+u8 P[20] = "0",I[20] = "0",D[20] = "0",V[20] = "0";  //LCD显示使用
 int PWM = 0;
 u16 ANGLE = 0;
 float SPEED = 0.0;
@@ -31,34 +32,36 @@ void motor_start(float speed)
 void motor_angle(unsigned int angle)
 {
 	u16 maichongshu;
-	maichongshu = angle*14.444;  //一度大约对应14.444个脉冲
+	maichongshu = angle*2.98;  //一度大约对应的脉冲
 	TIM_SetCompare2(TIM3,899);  //确保不转
 	while(TIM5->CNT!=0)
 	  TIM5->CNT = 0;  //防止波动，清零定时器5计数器
+	TIM_Cmd(TIM2,DISABLE);   //关闭定时器2，防止清0定时器5的计数器
     while(TIM5->CNT<maichongshu)
 	{
 		key = key_scan();
-		TIM_SetCompare2(TIM3,835);  //转动开始
+		TIM_SetCompare2(TIM3,850);  //转动开始
 		if(key==KEY12_PRESS)   //随时跳出
 			break;
-	}	
-    TIM_SetCompare2(TIM3,899);	
+	}
+	TIM_Cmd(TIM2,ENABLE);  //重新打开定时器2
+  TIM_SetCompare2(TIM3,899);	
 	TIM5->CNT = 0;  //再次清0计数器
 }
 
-void change(void)  //转换函数，将pid系数浮点数保存到字符数组中，方便后来显示
+void change(void)  //转换函数，将浮点数转换保存到字符数组中
 {
-	sprintf((char *)P,"%f",KP);
-	sprintf((char *)I,"%f",KI);
-	sprintf((char *)D,"%f",KD);
-  sprintf((char *)V,"%f",SPEED);
+	my_sprintf((char *)P,"%f",KP);
+	my_sprintf((char *)I,"%f",KI);
+	my_sprintf((char *)D,"%f",KD);
+  my_sprintf((char *)V,"%f",SPEED);
 }
 
 /**************************************************************
 *由于实际测试如果一直向eeprom中写入数据会影响界面显示以及按键扫描 *
 *所以只在有数据更新后才保存数据，以减小影响                      *
 ***************************************************************/
-void pid_set(void)  
+void pid_set(void)
 {	
 	switch(key)
 	{
@@ -67,7 +70,7 @@ void pid_set(void)
 			LCD_Fill(5,40,25,64,GREEN);  //指示方块（以下相同不在注释）
 			while(1)
 			{
-				key = key_scan();  //按键扫描
+				key = key_scan();
 				if(key==KEY1_PRESS){KP = KP+1.0;change();LCD_ShowString(80,40,120,24,24,P);}
 				else if(key==KEY2_PRESS){KP = KP+0.1;change();LCD_ShowString(80,40,120,24,24,P);}
 				else if(key==KEY3_PRESS){KP = KP+0.01;change();LCD_ShowString(80,40,120,24,24,P);}
@@ -83,8 +86,8 @@ void pid_set(void)
 				
 				else if(key==KEY12_PRESS){break;}  //按键12起返回作用
 			}
-			AT24CXX_Write(10,P,20);  //向eeprom中保存数值
-			LCD_Fill(5,40,25,64,WHITE);break;  //清除指示方块并跳出
+			AT24CXX_Write(10,P,20);             //向24C02中写入要保存的数值
+			LCD_Fill(5,40,25,64,WHITE);break;   //清除指示方块
 		}
 		case KEY2_PRESS:
 		{
@@ -162,19 +165,19 @@ void pid_set(void)
 			TIM_Cmd(TIM4,DISABLE);  //退出首先关闭定时器4，不再显示波形而且不影响主界面显示
 			LCD_Fill(10,200,230,300,WHITE);  //清屏波形区域
 			zhujiemian();  //进入主界面
-			break;  //实际执行不到这一步
+			break;         //实际执行不到这一步
 		}
 	}
 	
 	if(USART_RX_STA&0x8000)   //串口控制PID设置
 	{
-		if(USART_RX_BUF[0]=='P'){KP=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(80,40,120,24,24,P);AT24CXX_Write(10,P,20);}  //如果是设置KP的则更新
-		else if(USART_RX_BUF[0]=='I'){KI=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(80,70,100,24,24,I);AT24CXX_Write(40,I,20);}  //如果是设置KI的则更新
-		else if(USART_RX_BUF[0]=='D'){KD=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(80,100,100,24,24,D);AT24CXX_Write(70,D,20);}  //如果是设置KD的则更新
-		else if(USART_RX_BUF[0]=='V'){SPEED=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(130,130,100,24,24,V);AT24CXX_Write(100,V,20);}  //如果是设置转速则更新
-		USART_RX_STA=0; //清零状态位
+		if(USART_RX_BUF[0]=='P'){KP=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(80,40,120,24,24,P);AT24CXX_Write(10,P,20);}
+		else if(USART_RX_BUF[0]=='I'){KI=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(80,70,100,24,24,I);AT24CXX_Write(40,I,20);}
+		else if(USART_RX_BUF[0]=='D'){KD=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(80,100,100,24,24,D);AT24CXX_Write(70,D,20);}
+		else if(USART_RX_BUF[0]=='V'){SPEED=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(130,130,100,24,24,V);AT24CXX_Write(100,V,20);}
+		USART_RX_STA=0;  //清零状态位
 	}
-	motor_start(SPEED);  //启动电机
+	motor_start(SPEED);
 }
 
 void angle_set(void)  //角度设置
