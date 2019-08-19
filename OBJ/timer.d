@@ -34,4 +34,3 @@
 ..\obj\timer.o: ..\HARDWARE\LCD\lcd.h
 ..\obj\timer.o: ..\SYSTEM\sys\sys.h
 ..\obj\timer.o: D:\keil5 MDK\keil5 MDK\ARM\ARMCC\Bin\..\include\stdlib.h
-..\obj\timer.o: ..\HARDWARE\PRINTF\my_printf.h

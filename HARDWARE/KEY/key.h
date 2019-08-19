@@ -25,6 +25,5 @@
 
 void key_init(void);    //按键初始化函数
 unsigned char key_scan(void);    //按键扫描函数
-float key_vlaue(char *p);
 
 #endif
