@@ -39,3 +39,4 @@
 ..\obj\motor.o: ..\SYSTEM\delay\delay.h
 ..\obj\motor.o: ..\HARDWARE\JIEMIAN\jiemian.h
 ..\obj\motor.o: ..\HARDWARE\EEPROM\eeprom.h
+..\obj\motor.o: ..\HARDWARE\PRINTF\my_printf.h
