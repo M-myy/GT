@@ -40,7 +40,7 @@ void TIM2_IRQHandler(void)                                  //¶¨Ê±Æ÷2ÖÐ¶Ï·þÎñº¯Ê
 	{
 		cnt = TIM5->CNT;                                        //¶ÁÈ¡¶¨Ê±Æ÷ÎåµÄ¼ÆÊýÖµ
 		REAL_SPEED = (float)(short)cnt/4/26;
-		printf("speed: %fc/s\r\n",REAL_SPEED);                  //´òÓ¡×ªËÙ£¬260Îªµç»úÕ¤¸ñ£¬¹«Ê½Îª"TÊ±¼äÄÚ¼ÆÊýÖµ/4(Ò»¸öÕ¤¸ñ»á¼ì²âËÄ´ÎÂö³å)/Õ¤¸ñÊý"
+		my_printf("speed: %fc/s\r\n",REAL_SPEED);                  //´òÓ¡×ªËÙ£¬260Îªµç»úÕ¤¸ñ£¬¹«Ê½Îª"TÊ±¼äÄÚ¼ÆÊýÖµ/4(Ò»¸öÕ¤¸ñ»á¼ì²âËÄ´ÎÂö³å)/Õ¤¸ñÊý"
 		TIM_SetCounter(TIM5,0);                                 //Çå¿Õ¶¨Ê±Æ÷5µÄ¼ÆÊýÆ÷
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);             //Çå³ýÖÐ¶Ï±êÖ¾
 	}

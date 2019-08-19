@@ -154,8 +154,8 @@ void pid_set(void)
 				else if(key==KEY11_PRESS){SPEED = SPEED-0.0001;change();LCD_ShowString(130,130,100,24,24,V);}
 				
 				else if(key==KEY12_PRESS)break;
-				
 			}
+			LCD_DrawLine(10,300-SPEED*10,100,300-SPEED*10);
 			LCD_Fill(5,130,25,154,WHITE);
 			AT24CXX_Write(100,V,20);
 			motor_start(SPEED);break;
@@ -208,5 +208,11 @@ void angle_set(void)  //角度设置
 		{
 			zhujiemian();break;
 		}
+	}
+	
+	if(USART_RX_STA&0x8000)   //串口控制角度设置
+	{
+		if(USART_RX_BUF[0]=='A'){ANGLE = atof((char *)(USART_RX_BUF+1));LCD_ShowxNum(120,40,ANGLE,3,24,0);motor_angle(ANGLE);}
+		USART_RX_STA=0;  //清零状态位
 	}
 }
