@@ -69,6 +69,9 @@ void pid_jiemian(void)
 	LCD_ShowString(130,130,100,24,24,V);
 	LCD_ShowString(30,160,100,24,24,"5.Return");
 	LCD_Set_Window(10,200,220,100);  //开窗显示波形
+	LCD_Fill(10,199,230,199,RED);
+	LCD_Fill(20,199,20,300,GREEN);
+	LCD_Fill(10,300-SPEED*10,20,300-SPEED*10,RED);   //显示预定速度
 }
 
 void angle_jiemian(void)
@@ -79,14 +82,4 @@ void angle_jiemian(void)
 	LCD_ShowString(30,70,100,24,24,"2.Return");
 }
 
-void boxing_jiemian(void)    //角度界面显示
-{
-	if(SPEED!=LAST_SPEED)
-	  LCD_Fill(10,200,230,300,WHITE);
-	LCD_DrawLine(10,300-(int)(SPEED*10),230,300-(int)(SPEED*10));
-	LCD_Fast_DrawPoint(10+i,300-(int)(REAL_SPEED*10),GREEN);
-	LCD_Fill(10+i,200,10+i,300,WHITE);
-	i++;
-	if(i>=220)i = 0;
-}
 

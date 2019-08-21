@@ -41,5 +41,4 @@
 ..\obj\main.o: D:\keil5 MDK\keil5 MDK\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\main.o: ..\HARDWARE\JIEMIAN\jiemian.h
 ..\obj\main.o: ..\HARDWARE\IIC\iic.h
-..\obj\main.o: ..\HARDWARE\MYUART\my_uart.h
 ..\obj\main.o: ..\HARDWARE\PRINTF\my_printf.h

@@ -71,18 +71,15 @@ void pid_set(void)
 			while(1)
 			{
 				key = key_scan();
-				if(key==KEY1_PRESS){KP = KP+1.0;change();LCD_ShowString(80,40,120,24,24,P);}
-				else if(key==KEY2_PRESS){KP = KP+0.1;change();LCD_ShowString(80,40,120,24,24,P);}
-				else if(key==KEY3_PRESS){KP = KP+0.01;change();LCD_ShowString(80,40,120,24,24,P);}
-				else if(key==KEY4_PRESS){KP = KP+0.001;change();LCD_ShowString(80,40,120,24,24,P);}
-				else if(key==KEY5_PRESS){KP = KP+0.0001;change();LCD_ShowString(80,40,120,24,24,P);}
-				else if(key==KEY6_PRESS){KP = KP+0.00001;change();LCD_ShowString(80,40,120,24,24,P);}
+				if(key==KEY1_PRESS){KP = KP+1.0;change();LCD_ShowString(80,40,96,24,24,P);}
+				else if(key==KEY2_PRESS){KP = KP+0.1;change();LCD_ShowString(80,40,96,24,24,P);}
+				else if(key==KEY3_PRESS){KP = KP+0.01;change();LCD_ShowString(80,40,96,24,24,P);}
+				else if(key==KEY4_PRESS){KP = KP+0.001;change();LCD_ShowString(80,40,96,24,24,P);}
 				
-				else if(key==KEY7_PRESS){KP = KP-1.0;change();LCD_ShowString(80,40,120,24,24,P);}
-				else if(key==KEY8_PRESS){KP = KP-0.1;change();LCD_ShowString(80,40,120,24,24,P);}
-				else if(key==KEY9_PRESS){KP = KP-0.01;change();LCD_ShowString(80,40,120,24,24,P);}
-				else if(key==KEY10_PRESS){KP = KP-0.001;change();LCD_ShowString(80,40,120,24,24,P);}
-				else if(key==KEY11_PRESS){KP = KP-0.0001;change();LCD_ShowString(80,40,120,24,24,P);}
+				else if(key==KEY7_PRESS){KP = KP-1.0;change();LCD_ShowString(80,40,96,24,24,P);}
+				else if(key==KEY8_PRESS){KP = KP-0.1;change();LCD_ShowString(80,40,96,24,24,P);}
+				else if(key==KEY9_PRESS){KP = KP-0.01;change();LCD_ShowString(80,40,96,24,24,P);}
+				else if(key==KEY10_PRESS){KP = KP-0.001;change();LCD_ShowString(80,40,96,24,24,P);}
 				
 				else if(key==KEY12_PRESS){break;}  //按键12起返回作用
 			}
@@ -138,24 +135,26 @@ void pid_set(void)
 		case KEY4_PRESS:
 		{
 			LCD_Fill(5,130,25,154,GREEN);
+			LCD_Fill(10,200,19,300,WHITE);
 			while(1)
 			{
 				key = key_scan();
-				if(key==KEY1_PRESS){SPEED = SPEED+1.0;change();LCD_ShowString(130,130,100,24,24,V);}
-				else if(key==KEY2_PRESS){SPEED = SPEED+0.1;change();LCD_ShowString(130,130,100,24,24,V);}
-				else if(key==KEY3_PRESS){SPEED = SPEED+0.01;change();LCD_ShowString(130,130,100,24,24,V);}
-				else if(key==KEY4_PRESS){SPEED = SPEED+0.001;change();LCD_ShowString(130,130,100,24,24,V);}
-				else if(key==KEY5_PRESS){SPEED = SPEED+0.0001;change();LCD_ShowString(130,130,100,24,24,V);}
+				if(key==KEY1_PRESS){SPEED = SPEED+1.0;change();LCD_ShowString(130,130,72,24,24,V);}
+				else if(key==KEY2_PRESS){SPEED = SPEED+0.1;change();LCD_ShowString(130,130,72,24,24,V);}
+				else if(key==KEY3_PRESS){SPEED = SPEED+0.01;change();LCD_ShowString(130,130,72,24,24,V);}
+				else if(key==KEY4_PRESS){SPEED = SPEED+0.001;change();LCD_ShowString(130,130,72,24,24,V);}
+				else if(key==KEY5_PRESS){SPEED = SPEED+0.0001;change();LCD_ShowString(130,130,72,24,24,V);}
 				
-				else if(key==KEY7_PRESS){SPEED = SPEED-1.0;change();LCD_ShowString(130,130,100,24,24,V);}
-				else if(key==KEY8_PRESS){SPEED = SPEED-0.1;change();LCD_ShowString(130,130,100,24,24,V);}
-				else if(key==KEY9_PRESS){SPEED = SPEED-0.01;change();LCD_ShowString(130,130,100,24,24,V);}
-				else if(key==KEY10_PRESS){SPEED = SPEED-0.001;change();LCD_ShowString(130,130,100,24,24,V);}
-				else if(key==KEY11_PRESS){SPEED = SPEED-0.0001;change();LCD_ShowString(130,130,100,24,24,V);}
+				else if(key==KEY7_PRESS){SPEED = SPEED-1.0;change();LCD_ShowString(130,130,72,24,24,V);}
+				else if(key==KEY8_PRESS){SPEED = SPEED-0.1;change();LCD_ShowString(130,130,72,24,24,V);}
+				else if(key==KEY9_PRESS){SPEED = SPEED-0.01;change();LCD_ShowString(130,130,72,24,24,V);}
+				else if(key==KEY10_PRESS){SPEED = SPEED-0.001;change();LCD_ShowString(130,130,72,24,24,V);}
+				else if(key==KEY11_PRESS){SPEED = SPEED-0.0001;change();LCD_ShowString(130,130,72,24,24,V);}
 				
 				else if(key==KEY12_PRESS)break;
 			}
-			LCD_DrawLine(10,300-SPEED*10,100,300-SPEED*10);
+			LCD_Fill(20,199,20,300,GREEN);
+			LCD_Fill(10,300-SPEED*10,20,300-SPEED*10,RED);   //显示预定速度
 			LCD_Fill(5,130,25,154,WHITE);
 			AT24CXX_Write(100,V,20);
 			motor_start(SPEED);break;
@@ -174,7 +173,7 @@ void pid_set(void)
 		if(USART_RX_BUF[0]=='P'){KP=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(80,40,120,24,24,P);AT24CXX_Write(10,P,20);}
 		else if(USART_RX_BUF[0]=='I'){KI=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(80,70,100,24,24,I);AT24CXX_Write(40,I,20);}
 		else if(USART_RX_BUF[0]=='D'){KD=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(80,100,100,24,24,D);AT24CXX_Write(70,D,20);}
-		else if(USART_RX_BUF[0]=='V'){SPEED=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(130,130,100,24,24,V);AT24CXX_Write(100,V,20);}
+		else if(USART_RX_BUF[0]=='V'){LCD_Fill(10,200,19,300,WHITE);SPEED=atof((char *)(USART_RX_BUF+1));change();LCD_ShowString(130,130,100,24,24,V);LCD_Fill(20,199,20,300,GREEN);LCD_Fill(10,300-SPEED*10,20,300-SPEED*10,RED);AT24CXX_Write(100,V,20);}
 		USART_RX_STA=0;  //清零状态位
 	}
 	motor_start(SPEED);

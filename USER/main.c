@@ -10,7 +10,6 @@
 #include "lcd.h"
 #include "jiemian.h"
 #include "iic.h"
-#include "my_uart.h"
 #include "my_printf.h"
 
 /*****************************************************************
@@ -42,7 +41,7 @@ int main()
 	TIM_SetCompare2(TIM3,899);                      //开始时不让电机转动
 	LCD_Init();                                     //初始化LCD
         AT24CXX_Init();			                //EEPROM初始化
-	TIM4_init(1249,349);                            //定时器4初始化，用于显示波形打点
+	TIM4_init(2499,1399);                            //定时器4初始化，用于显示波形打点
 
 	LCD_Clear(WHITE);	                        //清屏
 	zhujiemian();	                                //进入主界面

@@ -167,17 +167,16 @@ void TIM4_init(unsigned int arr,unsigned int psc)	//定时器初始化函数
 
 void TIM4_IRQHandler(void)
 {
-    static int i = 0;
+    static int i = 1;
 	static float LAST_SPEED = 0.0;                 //存储上一次速度值
 	
 	if(TIM_GetITStatus(TIM4, TIM_IT_Update))       //判断是否为更新中断
 	{
-	    TIM_ClearITPendingBit(TIM4, TIM_IT_Update);//清除中断标志为
-	    LCD_Fill(10+i,200,10+i,300,WHITE);
-	    i++;
-        if(i>=220)i = 0;
-//		LCD_DrawPoint(100+i,(u16)(200+REAL_SPEED*10));
-		LCD_DrawLine(100+i,(u16)(300-LAST_SPEED*10),101+i,(u16)(300-REAL_SPEED*10));
+	  TIM_ClearITPendingBit(TIM4, TIM_IT_Update);//清除中断标志为
+	  LCD_Fill(20+i,200,20+i,300,WHITE);
+		LCD_DrawLine(20+i,(u16)(300-LAST_SPEED*10),21+i,(u16)(300-REAL_SPEED*10));
 		LAST_SPEED = REAL_SPEED;    //更新上一次的值
+		i++;
+    if(i>=210)i = 1;
 	}
 }

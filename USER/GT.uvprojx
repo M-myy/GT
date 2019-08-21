@@ -595,11 +595,6 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\JIEMIAN\jiemian.c</FilePath>
             </File>
-            <File>
-              <FileName>my_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\MYUART\my_uart.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>

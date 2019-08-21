@@ -17,11 +17,11 @@
 int my_sprintf (char * buf, const char *format, ...)
 { 
     int lenth; 
-    va_list ap ; 
-    va_start (ap, format) ;
-    lenth = vsprintf (buf, format, ap) ; 
-    va_end (ap) ; 
-    return lenth ;
+    va_list ap; 
+    va_start (ap, format);
+    lenth = vsprintf (buf, format, ap); 
+    va_end (ap); 
+    return lenth;
 }
 
 
