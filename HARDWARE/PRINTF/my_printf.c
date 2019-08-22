@@ -60,19 +60,25 @@ void printstr(const char *ptr)        //输出字符串
 void printfloat(const float fl)     //输出浮点数，小数点第5位四舍五入
 {  
     int fl_int = (int)fl;  //取整数部分
-    int fl_flt = (int)(100000 * (fl- fl_int));    //取六位小数
+    int fl_flt = (int)(10000000 * (fl- fl_int));    //先取7位小数
 
-    if(fl_flt % 10 >= 5)    //四舍五入
+    if(fl_flt % 10 >= 5)    //第七位四舍五入
     {  
         fl_flt = fl_flt / 10 + 1;  
     }  
     else  
     {  
         fl_flt = fl_flt / 10;  
-    }  
-    printint(fl_int);  //打印整数部分
-    putchar('.');  
-    printint(fl_flt);  //打印小数部分
+    } 
+    if(fl_int==0)        //如果正数部分为零，则打印一个0
+			putchar('0');
+    else		
+      printint(fl_int);  //打印整数部分
+    putchar('.');        //打印小数点
+    if(fl_flt==0)        //如果小数部分为零则打印"000000"
+      puts("000000");	   	
+		else
+      printint(fl_flt);  //打印小数部分
 }  
 
 void my_printf(const char *format,...)  
