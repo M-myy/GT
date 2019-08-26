@@ -131,7 +131,6 @@ Section Cross References
     key.o(i.key_scan) refers to delay.o(i.delay_ms) for delay_ms
     key.o(i.key_scan) refers to key.o(.data) for HANG1_UP
     key.o(i.key_vlaue) refers to key.o(i.key_scan) for key_scan
-    key.o(i.key_vlaue) refers to lcd.o(i.LCD_ShowString) for LCD_ShowString
     key.o(i.key_vlaue) refers to atof.o(i.atof) for atof
     key.o(i.key_vlaue) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
     key.o(i.key_vlaue) refers to main.o(.data) for key
@@ -1294,7 +1293,7 @@ Removing Unused input sections from the image.
     Removing stm32f10x_wwdg.o(i.WWDG_SetCounter), (16 bytes).
     Removing stm32f10x_wwdg.o(i.WWDG_SetPrescaler), (24 bytes).
     Removing stm32f10x_wwdg.o(i.WWDG_SetWindowValue), (40 bytes).
-    Removing key.o(i.key_vlaue), (192 bytes).
+    Removing key.o(i.key_vlaue), (176 bytes).
     Removing eeprom.o(i.AT24CXX_Check), (46 bytes).
     Removing eeprom.o(i.AT24CXX_ReadLenByte), (44 bytes).
     Removing eeprom.o(i.AT24CXX_WriteLenByte), (42 bytes).
@@ -1310,7 +1309,7 @@ Removing Unused input sections from the image.
     Removing lcd.o(i.opt_delay), (14 bytes).
     Removing jiemian.o(.data), (9 bytes).
 
-454 unused section(s) (total 17803 bytes) removed from the image.
+454 unused section(s) (total 17787 bytes) removed from the image.
 
 ==============================================================================
 

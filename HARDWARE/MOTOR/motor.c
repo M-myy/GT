@@ -83,6 +83,8 @@ void pid_set(void)
 				
 				else if(key==KEY12_PRESS){break;}  //按键12起返回作用
 			}
+//			KP = key_vlaue((char *)P);  //输入数值
+//			LCD_ShowString(80,40,96,24,24,P);
 			AT24CXX_Write(10,P,20);             //向24C02中写入要保存的数值
 			LCD_Fill(5,40,25,64,WHITE);break;   //清除指示方块
 		}
@@ -106,6 +108,8 @@ void pid_set(void)
 				
 				else if(key==KEY12_PRESS)break;
 			}
+//			KI = key_vlaue((char *)P);  //输入数值
+//			LCD_ShowString(80,70,100,24,24,I);
 			AT24CXX_Write(40,I,20);
 			LCD_Fill(5,70,25,94,WHITE);break;
 		}
@@ -129,6 +133,8 @@ void pid_set(void)
 				
 				else if(key==KEY12_PRESS)break;
 			}
+//			KD = key_vlaue((char *)P);  //输入数值
+//			LCD_ShowString(80,100,100,24,24,D);			
 			AT24CXX_Write(70,D,20);
 			LCD_Fill(5,100,25,124,WHITE);break;
 	  }
@@ -153,6 +159,8 @@ void pid_set(void)
 				
 				else if(key==KEY12_PRESS)break;
 			}
+//			SPEED = key_vlaue((char *)P);  //输入数值
+//			LCD_ShowString(130,130,72,24,24,V);			
 			LCD_Fill(20,199,20,300,GREEN);
 			LCD_Fill(10,300-SPEED*10,20,300-SPEED*10,RED);   //显示预定速度
 			LCD_Fill(5,130,25,154,WHITE);

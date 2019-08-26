@@ -867,7 +867,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_spi.h)(0x4D783BB4)
 I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x504F415E)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
-F (..\HARDWARE\KEY\key.c)(0x5D47E389)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\KEY -I ..\HARDWARE\EEPROM -I ..\HARDWARE\IIC -I ..\HARDWARE\TIMER -I ..\HARDWARE\MOTOR -I ..\HARDWARE\PID -I ..\HARDWARE\PRINTF -I ..\HARDWARE\LCD -I ..\HARDWARE\JIEMIAN -I ..\HARDWARE\MYUART-I F:\GitHub¿â\GT\USER\RTE-I "D:\keil5 MDK\keil5 MDK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\keil5 MDK\keil5 MDK\ARM\CMSIS\Include"-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\key.o --omf_browse ..\obj\key.crf --depend ..\obj\key.d)
+F (..\HARDWARE\KEY\key.c)(0x5D63BC37)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\KEY -I ..\HARDWARE\EEPROM -I ..\HARDWARE\IIC -I ..\HARDWARE\TIMER -I ..\HARDWARE\MOTOR -I ..\HARDWARE\PID -I ..\HARDWARE\PRINTF -I ..\HARDWARE\LCD -I ..\HARDWARE\JIEMIAN -I ..\HARDWARE\MYUART-I F:\GitHub¿â\GT\USER\RTE-I "D:\keil5 MDK\keil5 MDK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\keil5 MDK\keil5 MDK\ARM\CMSIS\Include"-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\key.o --omf_browse ..\obj\key.crf --depend ..\obj\key.d)
 I (..\HARDWARE\KEY\key.h)(0x5D484BDD)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -1002,7 +1002,7 @@ I (..\HARDWARE\LCD\lcd.h)(0x5D40390F)
 I (..\SYSTEM\sys\sys.h)(0x550F951B)
 I (D:\keil5 MDK\keil5 MDK\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
 I (..\HARDWARE\PRINTF\my_printf.h)(0x5D595DCC)
-F (..\HARDWARE\MOTOR\motor.c)(0x5D5D0D13)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\KEY -I ..\HARDWARE\EEPROM -I ..\HARDWARE\IIC -I ..\HARDWARE\TIMER -I ..\HARDWARE\MOTOR -I ..\HARDWARE\PID -I ..\HARDWARE\PRINTF -I ..\HARDWARE\LCD -I ..\HARDWARE\JIEMIAN -I ..\HARDWARE\MYUART-I F:\GitHub¿â\GT\USER\RTE-I "D:\keil5 MDK\keil5 MDK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\keil5 MDK\keil5 MDK\ARM\CMSIS\Include"-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\motor.o --omf_browse ..\obj\motor.crf --depend ..\obj\motor.d)
+F (..\HARDWARE\MOTOR\motor.c)(0x5D63BC37)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\HARDWARE\KEY -I ..\HARDWARE\EEPROM -I ..\HARDWARE\IIC -I ..\HARDWARE\TIMER -I ..\HARDWARE\MOTOR -I ..\HARDWARE\PID -I ..\HARDWARE\PRINTF -I ..\HARDWARE\LCD -I ..\HARDWARE\JIEMIAN -I ..\HARDWARE\MYUART-I F:\GitHub¿â\GT\USER\RTE-I "D:\keil5 MDK\keil5 MDK\Keil\STM32F1xx_DFP\1.0.5\Device\Include"-I "D:\keil5 MDK\keil5 MDK\ARM\CMSIS\Include"-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\motor.o --omf_browse ..\obj\motor.crf --depend ..\obj\motor.d)
 I (..\HARDWARE\MOTOR\motor.h)(0x5D482C03)
 I (..\HARDWARE\PID\pid.h)(0x5D412F96)
 I (..\HARDWARE\TIMER\timer.h)(0x5D497BF4)

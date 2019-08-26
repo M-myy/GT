@@ -87,7 +87,9 @@ unsigned char key_scan(void)    //按键扫描函数
 	
 	return 0;
 }
-
+/*
+*此函数可作为按键直接输入数值,要更改宏定义
+*/
 float key_vlaue(char *p)
 {
 	char i = 0,*addr;
@@ -99,7 +101,7 @@ float key_vlaue(char *p)
 		key = key_scan();
 		if(key==KEY1_PRESS||key==KEY2_PRESS||key==KEY3_PRESS||key==KEY4_PRESS||key==KEY5_PRESS||key==KEY6_PRESS||
 			key==KEY7_PRESS||key==KEY8_PRESS||key==KEY9_PRESS||key==KEY10_PRESS||key==KEY11_PRESS||key==KEY12_PRESS)
-		 {p[i++] = key;LCD_ShowString(80,40,120,24,24,(u8 *)p);}
+		 {p[i++] = key;}
 		if(key==KEY11_PRESS)
 		{p[i] = '\0';break;}
 	}
